@@ -5,7 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'g++ -o PES2UG23CS817-1 hello.cpp'  // Compile C++ file
+                    echo 'Compiling C++ code...'
+                    sh 'g++ -o PES2UG23CS817-1 hello.cpp'  // Replace with YOUR_SRN
                 }
             }
         }
@@ -13,14 +14,17 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './PES2UG23CS817-1'  // Execute compiled binary
+                    echo 'Running the program...'
+                    sh './PES2UG23CS817-1'  // Execute compiled C++ program
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
+                script {
+                    echo 'Deployment step (placeholder)...'
+                }
             }
         }
     }

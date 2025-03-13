@@ -1,25 +1,33 @@
 pipeline {
     agent any
+
     stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/puneeth-m-s/pes2ug23cs817_Jenkins.git'
-            }
-        }
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                script {
+                    sh 'g++ -o YOUR_SRN-1 hello.cpp'  // Compile C++ file
+                }
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                script {
+                    sh './YOUR_SRN-1'  // Execute compiled binary
+                }
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
             }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
